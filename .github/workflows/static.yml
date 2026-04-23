@@ -22,26 +22,25 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-
   dev:
     environment: dev
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello from dev"
-
-   test:
-     needs: dev
-     environment: test
-     runs-on: ubuntu-latest
-     steps:
-       - run: echo "Hello from test"
-
-    prod:
-     needs: test
-     environment: prod
-     runs-on: ubuntu-latest
-     steps:
-       - run: echo "Hello from prod"
+      
+  test:
+    needs: dev
+    environment: test
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello from test"
+       
+  prod:
+    needs: test
+    environment: prod
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello from prod"
   # Single deploy job since we're just deploying
   deploy:
     environment:
